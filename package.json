@@ -1,0 +1,24 @@
+{
+  "name": "dapps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "truffle:init:simplesmartcontract": "truffle init simplesmartcontract"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/napoleon-commits/dapps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/napoleon-commits/dapps/issues"
+  },
+  "homepage": "https://github.com/napoleon-commits/dapps#readme",
+  "dependencies": {
+    "truffle": "^5.1.40"
+  }
+}
