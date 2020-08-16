@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "truffle:init:simplesmartcontract": "truffle init simplesmartcontract"
+    "test": "truffle test",
+    "truffle:init": "truffle init ."
   },
   "repository": {
     "type": "git",

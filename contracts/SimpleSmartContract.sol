@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SIMPLE_SMART_CONTRACT
 
-pragma solidity ^0.7.0; // specify version
+pragma solidity 0.5.16; // specify version
 
 contract SimpleSmartContract {}
