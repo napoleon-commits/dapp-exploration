@@ -1,0 +1,110 @@
+{
+  "contractName": "SimpleSmartContract",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/byronhall/Documents/dapps/contracts/SimpleSmartContract.sol\":\"SimpleSmartContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/byronhall/Documents/dapps/contracts/SimpleSmartContract.sol\":{\"keccak256\":\"0x1cb2ef15c046d2728a0bd741ec0305b3f5d5edf02fe21139730775ce9cfcd49b\",\"urls\":[\"bzz-raw://1deed1ecd4124eca69f6ae30e5020111c5b5ff76e1e9d5b06782783132f33a80\",\"dweb:/ipfs/QmbsC8omrJqCaWKr9kugVnWwK2aM94p3StdkCcekwzkhUG\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723158207cc026583b5bbe812c7c736a75dca7a327c2504591084f30fc804c23f2456bae64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a723158207cc026583b5bbe812c7c736a75dca7a327c2504591084f30fc804c23f2456bae64736f6c63430005100032",
+  "sourceMap": "95:31:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;95:31:1;;;;;;;",
+  "deployedSourceMap": "95:31:1:-;;;;;",
+  "source": "// SPDX-License-Identifier: SIMPLE_SMART_CONTRACT\n\npragma solidity 0.5.16; // specify version\n\ncontract SimpleSmartContract {}",
+  "sourcePath": "/Users/byronhall/Documents/dapps/contracts/SimpleSmartContract.sol",
+  "ast": {
+    "absolutePath": "/Users/byronhall/Documents/dapps/contracts/SimpleSmartContract.sol",
+    "exportedSymbols": {
+      "SimpleSmartContract": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "51:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "SimpleSmartContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "95:31:1"
+      }
+    ],
+    "src": "51:75:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/byronhall/Documents/dapps/contracts/SimpleSmartContract.sol",
+    "exportedSymbols": {
+      "SimpleSmartContract": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "51:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "SimpleSmartContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "95:31:1"
+      }
+    ],
+    "src": "51:75:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "1597612125516": {
+      "events": {},
+      "links": {},
+      "address": "0x0a95d62f5b4cd7393c1EDB03BDbc1F54ABc13EB5",
+      "transactionHash": "0xb190c3239143f658c3f08e728dcf159e0053268e47b838afad41f599a1912e97"
+    }
+  },
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2020-08-16T21:09:28.906Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

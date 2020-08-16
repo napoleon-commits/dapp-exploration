@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "truffle test",
-    "truffle:init": "truffle init ."
+    "init": "truffle init .",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "server": "ganache-cli"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,7 @@
   },
   "homepage": "https://github.com/napoleon-commits/dapps#readme",
   "dependencies": {
+    "ganache-cli": "^6.10.1",
     "truffle": "^5.1.40"
   }
 }
