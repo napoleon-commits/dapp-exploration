@@ -8,7 +8,8 @@
     "init": "truffle init .",
     "compile": "truffle compile",
     "migrate": "truffle migrate --reset",
-    "server": "ganache-cli"
+    "server": "ganache-cli",
+    "start": "static-server public"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/napoleon-commits/dapps#readme",
   "dependencies": {
     "ganache-cli": "^6.10.1",
+    "static-server": "^2.2.1",
     "truffle": "^5.1.40"
   }
 }
