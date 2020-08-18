@@ -7,7 +7,7 @@
     "test": "truffle test",
     "init": "truffle init .",
     "compile": "truffle compile",
-    "migrate": "truffle migrate",
+    "migrate": "truffle migrate --reset",
     "server": "ganache-cli"
   },
   "repository": {
