@@ -1,8 +1,8 @@
-var contractABI = [
+const contractABI = [
     {
         "constant": true,
         "inputs": [],
-        "name": "hello",
+        "name": "data",
         "outputs": [
             {
                 "internalType": "string",
@@ -11,17 +11,66 @@ var contractABI = [
             }
         ],
         "payable": false,
-        "stateMutability": "pure",
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_data",
+                "type": "string"
+            }
+        ],
+        "name": "set",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "get",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
     }
 ];
-var contractAddress = "0xd68d320d50571f16F18A381F750813d0527a1fC6";
-var web3 = new Web3('http://127.0.0.1:8545');
-var helloWorld = new web3.eth.Contract(contractABI, contractAddress);
+const contractAddress = "0x91a703882b20A3cF2cA9645924188d9Cc03cB2dE";
+const web3 = new Web3('http://127.0.0.1:8545');
+const simpleStorage = new web3.eth.Contract(contractABI, contractAddress);
 
 document.addEventListener('DOMContentLoaded', () => {
-    helloWorld.methods.hello().call()
-        .then(result => {
-            document.getElementById('hello').innerHTML = result;
+    const $setData = document.getElementById('setData');
+    const $data = document.getElementById('data');
+    let accounts = [];
+    web3.eth.getAccounts()
+        .then(_accounts => {
+            accounts = _accounts;
         });
+
+    const getData = () => {
+        simpleStorage.methods.data().call().then(res => {
+            $data.innerHTML = res;
+        });
+    };
+
+    getData();
+
+    $setData.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = e.target.elements[0].value;
+        simpleStorage.methods.set(data).send({
+            from: accounts[0],
+        }).then(getData);
+    });
 });

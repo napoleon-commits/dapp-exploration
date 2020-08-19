@@ -8,15 +8,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hello: '',
-    }
+      input: '',
+      data: '',
+      contract: null,
+      accounts: [],
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getData = this.getData.bind(this);
   }
   componentDidMount() {
-    var contractABI = [
+    const contractABI = [
       {
         "constant": true,
         "inputs": [],
-        "name": "hello",
+        "name": "data",
         "outputs": [
           {
             "internalType": "string",
@@ -25,23 +31,77 @@ class App extends React.Component {
           }
         ],
         "payable": false,
-        "stateMutability": "pure",
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "set",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "get",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
       }
     ];
-    var contractAddress = "0xd68d320d50571f16F18A381F750813d0527a1fC6";
-    var web3 = new Web3('http://127.0.0.1:8545');
-    var helloWorld = new web3.eth.Contract(contractABI, contractAddress);
-
-    helloWorld.methods.hello().call()
-      .then(result => {
+    const contractAddress = "0x91a703882b20A3cF2cA9645924188d9Cc03cB2dE";
+    const web3 = new Web3('http://127.0.0.1:8545');
+    const contract = new web3.eth.Contract(contractABI, contractAddress);
+    this.setState({
+      contract,
+    })
+    web3.eth.getAccounts()
+      .then(accounts => {
         this.setState({
-          hello: result
+          accounts,
         });
       });
   }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+  handleClick() {
+    const { contract, input, accounts } = this.state;
+    contract.methods.set(input).send({
+      from: accounts[0],
+    }).then(this.getData);
+  }
+
+  getData() {
+    const { contract } = this.state;
+    contract.methods.data().call().then(data => {
+      this.setState({
+        data,
+      })
+    });
+  }
   render() {
-    const { hello } = this.state;
+    const { data, input } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -57,7 +117,12 @@ class App extends React.Component {
           >
             Learn React
         </a>
-          <div>{hello}</div>
+          <div>
+            <div>Set data</div>
+            <div><input id="input" value={input} onChange={this.handleChange} /></div>
+            <div><button onClick={this.handleClick}>Submit</button></div>
+            <div>Data: {data}</div>
+          </div>
         </header>
       </div>
     )
