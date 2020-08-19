@@ -8,7 +8,7 @@
     "init": "truffle init .",
     "compile": "truffle compile",
     "migrate": "truffle migrate --reset",
-    "server": "ganache-cli",
+    "server": "ganache-cli && npm run migrate",
     "start": "static-server public"
   },
   "repository": {

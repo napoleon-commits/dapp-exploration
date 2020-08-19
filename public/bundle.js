@@ -1,13 +1,19 @@
 const contractABI = [
     {
         "constant": true,
-        "inputs": [],
-        "name": "data",
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "ids",
         "outputs": [
             {
-                "internalType": "string",
+                "internalType": "uint256",
                 "name": "",
-                "type": "string"
+                "type": "uint256"
             }
         ],
         "payable": false,
@@ -18,12 +24,12 @@ const contractABI = [
         "constant": false,
         "inputs": [
             {
-                "internalType": "string",
-                "name": "_data",
-                "type": "string"
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
             }
         ],
-        "name": "set",
+        "name": "add",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -31,13 +37,49 @@ const contractABI = [
     },
     {
         "constant": true,
-        "inputs": [],
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "index",
+                "type": "uint256"
+            }
+        ],
         "name": "get",
         "outputs": [
             {
-                "internalType": "string",
+                "internalType": "uint256",
                 "name": "",
-                "type": "string"
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getAll",
+        "outputs": [
+            {
+                "internalType": "uint256[]",
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "length",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
             }
         ],
         "payable": false,
@@ -45,32 +87,35 @@ const contractABI = [
         "type": "function"
     }
 ];
-const contractAddress = "0x91a703882b20A3cF2cA9645924188d9Cc03cB2dE";
+const contractAddress = "0xdC5f55f79DC8DF23a5b51A128B982E0ba6B81969";
 const web3 = new Web3('http://127.0.0.1:8545');
-const simpleStorage = new web3.eth.Contract(contractABI, contractAddress);
+const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const $setData = document.getElementById('setData');
+    const $addData = document.getElementById('addData');
     const $data = document.getElementById('data');
     let accounts = [];
+
     web3.eth.getAccounts()
         .then(_accounts => {
             accounts = _accounts;
+            return contract.methods.getAll().call()
+        })
+        .then(result => {
+            $data.innerHTML = result.join(', ');
         });
 
-    const getData = () => {
-        simpleStorage.methods.data().call().then(res => {
-            $data.innerHTML = res;
-        });
-    };
-
-    getData();
-
-    $setData.addEventListener('submit', (e) => {
+    $addData.addEventListener('submit', e => {
         e.preventDefault();
         const data = e.target.elements[0].value;
-        simpleStorage.methods.set(data).send({
-            from: accounts[0],
-        }).then(getData);
+        contract.methods.add(data).send({
+            from: accounts[0]
+        })
+            .then(() => {
+                return contract.methods.getAll().call();
+            })
+            .then(result => {
+                $data.innerHTML = result.join(', ');
+            });
     });
 });
